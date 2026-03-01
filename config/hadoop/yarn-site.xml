@@ -8,7 +8,7 @@
   </property>
   <property>
     <name>yarn.resourcemanager.cluster-id</name>
-    <value>mycluster</value>
+    <value>clusterA</value>
   </property>
   <property>
     <name>yarn.resourcemanager.ha.rm-ids</name>

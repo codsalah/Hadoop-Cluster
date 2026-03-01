@@ -4,30 +4,30 @@
   <!-- ===== HA NAMESERVICE CONFIG ===== -->
   <property>
     <name>dfs.nameservices</name>
-    <value>mycluster</value>
+    <value>clusterA</value>
   </property>
   <property>
-    <name>dfs.ha.namenodes.mycluster</name>
+    <name>dfs.ha.namenodes.clusterA</name>
     <value>nn1,nn2</value>
   </property>
 
   <!-- RPC addresses — used by clients and DataNodes to talk to NameNodes -->
   <property>
-    <name>dfs.namenode.rpc-address.mycluster.nn1</name>
+    <name>dfs.namenode.rpc-address.clusterA.nn1</name>
     <value>node01:8020</value>
   </property>
   <property>
-    <name>dfs.namenode.rpc-address.mycluster.nn2</name>
+    <name>dfs.namenode.rpc-address.clusterA.nn2</name>
     <value>node02:8020</value>
   </property>
 
   <!-- HTTP addresses (Web UI) -->
   <property>
-    <name>dfs.namenode.http-address.mycluster.nn1</name>
+    <name>dfs.namenode.http-address.clusterA.nn1</name>
     <value>node01:9870</value>
   </property>
   <property>
-    <name>dfs.namenode.http-address.mycluster.nn2</name>
+    <name>dfs.namenode.http-address.clusterA.nn2</name>
     <value>node02:9870</value>
   </property>
 
@@ -35,7 +35,7 @@
   <!-- Shared edit log — both NNs read/write here so standby is always up to date -->
   <property>
     <name>dfs.namenode.shared.edits.dir</name>
-    <value>qjournal://node01:8485;node02:8485;node03:8485/mycluster</value>
+    <value>qjournal://node01:8485;node02:8485;node03:8485/clusterA</value>
   </property>
   <property>
     <name>dfs.journalnode.edits.dir</name>
@@ -48,7 +48,7 @@
     <value>true</value>
   </property>
   <property>
-    <name>dfs.client.failover.proxy.provider.mycluster</name>
+    <name>dfs.client.failover.proxy.provider.clusterA</name>
     <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
   </property>
   <!-- Fencing: use shell(/bin/true) for dev environment — in prod use SSH or STONITH -->

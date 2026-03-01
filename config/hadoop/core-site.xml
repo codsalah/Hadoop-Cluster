@@ -4,7 +4,7 @@
   <!-- The default filesystem — points to our HA nameservice -->
   <property>
     <name>fs.defaultFS</name>
-    <value>hdfs://mycluster</value>
+    <value>hdfs://clusterA</value>
   </property>
   <!-- ZooKeeper quorum for HA coordination -->
   <property>
