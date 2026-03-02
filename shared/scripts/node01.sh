@@ -12,7 +12,7 @@ HADOOP_HOME=/opt/hadoop
 HADOOP_CONF=$HADOOP_HOME/etc/hadoop
 NAMENODE_DIR=/var/hadoop/namenode
 JOURNAL_DIR=/var/hadoop/journal
-CLUSTER_ID=mycluster
+CLUSTER_ID=clusterA
 
 # ── Helpers 
 log() { echo "[$(date '+%H:%M:%S')] [node01] $*"; }
