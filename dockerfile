@@ -8,7 +8,9 @@ RUN apt-get update && apt-get install -y \
     openjdk-11-jdk \
     openssh-server \
     openssh-client \
-    wget vim net-tools \
+    wget vim curl net-tools \
+    pdsh \
+    sudo \
     && rm -rf /var/lib/apt/lists/*
 
 # Set environment variables
@@ -16,9 +18,10 @@ ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ENV HADOOP_HOME=/opt/hadoop
 ENV HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop
 ENV ZOOKEEPER_HOME=/opt/zookeeper
+ENV ZOOKEEPER_CONF_DIR=$ZOOKEEPER_HOME/conf
 ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$ZOOKEEPER_HOME/bin
 
-# Copy tarballs from shared (must be in build context)
+# Copy tarballs from host
 COPY shared/hadoop-3.4.2.tar.gz /tmp/
 COPY shared/apache-zookeeper-3.8.6-bin.tar.gz /tmp/
 
@@ -38,12 +41,13 @@ RUN mkdir -p /root/.ssh && \
     echo "StrictHostKeyChecking no" >> /root/.ssh/config
 
 # Copy Hadoop config files
-COPY configs/hadoop/core-site.xml      $HADOOP_CONF_DIR/
-COPY configs/hadoop/hdfs-site.xml      $HADOOP_CONF_DIR/
-COPY configs/hadoop/yarn-site.xml      $HADOOP_CONF_DIR/
-COPY configs/hadoop/mapred-site.xml    $HADOOP_CONF_DIR/
-COPY configs/hadoop/workers            $HADOOP_CONF_DIR/
-COPY configs/hadoop/hadoop-env.sh      $HADOOP_CONF_DIR/
+COPY config/hadoop/core-site.xml      $HADOOP_CONF_DIR/
+COPY config/hadoop/hdfs-site.xml      $HADOOP_CONF_DIR/
+COPY config/hadoop/yarn-site.xml      $HADOOP_CONF_DIR/
+COPY config/hadoop/mapred-site.xml    $HADOOP_CONF_DIR/
+COPY config/hadoop/workers            $HADOOP_CONF_DIR/
+COPY config/hadoop/hadoop-env.sh      $HADOOP_CONF_DIR/
+COPY config/zookeeper/zoo.cfg         $ZOOKEEPER_CONF_DIR/
 
 # Start SSH on container start
 CMD service ssh start && sleep infinity

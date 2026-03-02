@@ -17,12 +17,19 @@ services:
       - "2181:2181" # ZooKeeper client
     volumes:
       - ./shared:/shared
+      - ./config/hadoop:/opt/hadoop/etc/hadoop
+      - ./config/zookeeper:/opt/zookeeper/conf
       - node01-data:/opt/hadoop/data
       - node01-zk:/opt/zookeeper/data
     networks:
       - cluster-network
     environment:
       - NODE_ROLE=node01
+    healthcheck:
+      test: [ "CMD", "jps", "|", "grep", "NameNode" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # ── node02 ─────────────────────────────────────────────────────────────────
   node02:
@@ -36,6 +43,8 @@ services:
       - "2182:2181" # ZooKeeper client
     volumes:
       - ./shared:/shared
+      - ./config/hadoop:/opt/hadoop/etc/hadoop
+      - ./config/zookeeper:/opt/zookeeper/conf
       - node02-data:/opt/hadoop/data
       - node02-zk:/opt/zookeeper/data
     networks:
@@ -56,6 +65,8 @@ services:
       - "8083:8042" # NodeManager Web UI
     volumes:
       - ./shared:/shared
+      - ./config/hadoop:/opt/hadoop/etc/hadoop
+      - ./config/zookeeper:/opt/zookeeper/conf
       - node03-data:/opt/hadoop/data
       - node03-zk:/opt/zookeeper/data
     networks:
@@ -74,6 +85,7 @@ services:
       - "8084:8042" # NodeManager Web UI
     volumes:
       - ./shared:/shared
+      - ./config/hadoop:/opt/hadoop/etc/hadoop
       - node04-data:/opt/hadoop/data
     networks:
       - cluster-network
@@ -91,6 +103,7 @@ services:
       - "8085:8042" # NodeManager Web UI
     volumes:
       - ./shared:/shared
+      - ./config/hadoop:/opt/hadoop/etc/hadoop
       - node05-data:/opt/hadoop/data
     networks:
       - cluster-network
