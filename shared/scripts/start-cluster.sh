@@ -38,10 +38,16 @@ for node in node01 node02 node03; do
 done
 
 # ── Step 2: Start JournalNode on node03 (node01/02 start in their own scripts) 
-log "STEP 2/5 — Starting JournalNode on node03"
-ssh root@node03 "bash $SCRIPTS_DIR/node03.sh"
-ok "node03 JournalNode is up"
+log "STEP 2/5 — Starting JournalNodes on node02 and node03"
+ssh root@node02 "hdfs --daemon start journalnode" &
+ssh root@node03 "bash $SCRIPTS_DIR/node03.sh" &
+wait
+sleep 3
 
+# Verify all 3 JournalNodes are up
+for node in node01 node02 node03; do
+  ssh root@$node "nc -z localhost 8485 && echo '  '$node' JournalNode UP' || echo '  '$node' JournalNode DOWN'"
+done
 # ── Step 3: Start Active NameNode on node01 
 log "STEP 3/5 — Starting Active NameNode on node01"
 bash $SCRIPTS_DIR/node01.sh
