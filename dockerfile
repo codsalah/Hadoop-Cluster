@@ -8,10 +8,15 @@ RUN apt-get update && apt-get install -y \
     openjdk-11-jdk \
     openssh-server \
     openssh-client \
+<<<<<<< HEAD
     wget vim curl net-tools \
     netcat-openbsd \
     pdsh \
     sudo \
+=======
+    wget vim net-tools \
+    netcat-openbsd \
+>>>>>>> origin/cluster-automation
     && rm -rf /var/lib/apt/lists/*
 
 # Set environment variables
