@@ -1,5 +1,5 @@
 #!/bin/bash
-# 02-journalnodes.sh — Start JournalNode daemons on node01, node02, node03
+# 02-journalnodes.sh — Start JournalNode daemons on dr-node01, dr-node02, dr-node03
 # Service-centric: this script handles ONLY the HDFS JournalNode layer.
 
 set -e
@@ -7,7 +7,7 @@ set -e
 HADOOP_BIN="/opt/hadoop/bin/hdfs"
 JOURNAL_DIR="/var/hadoop/journal"
 
-JN_NODES="node01 node02 node03"
+JN_NODES="dr-node01 dr-node02 dr-node03"
 
 log()  { echo "[$(date '+%H:%M:%S')] [JournalNode] $*"; }
 

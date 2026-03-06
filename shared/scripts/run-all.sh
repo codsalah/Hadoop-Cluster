@@ -23,19 +23,23 @@ wait_for_port() {
   fail "$label did not come up on $host:$port"
 }
 
-# ── Pre-flight ────────────────────────────────────────────────────────────────
-[[ "$(hostname)" == "node01" ]] || fail "Must run from node01"
+#===============================================================================
+# PRE-FLIGHT
+#===============================================================================
 
-log "Fixing line endings and permissions on all scripts..."
-for node in node01 node02 node03 node04 node05; do
-  ssh root@$node "sed -i 's/\r//' $SCRIPTS_DIR/*.sh && chmod +x $SCRIPTS_DIR/*.sh"
-done
-
+[[ "$(hostname)" == "dr-node01" ]] || fail "Must run from node01"
+log "Sanitizing line endings and permissions on shared scripts..."
+# Run ONCE from node01 since the volume is shared across all containers
+dos2unix $SCRIPTS_DIR/*.sh 2>/dev/null
+chmod +x $SCRIPTS_DIR/*.sh
+  
 # ── Sync configs ─────────────────────────────────────────────────────────────
 [[ -f "$SCRIPTS_DIR/sync-conf.sh" ]] || fail "sync-conf.sh not found in $SCRIPTS_DIR"
 log "Syncing configs to all nodes..."
 bash $SCRIPTS_DIR/sync-conf.sh
 ok "Configs synced"
+
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 #  STEP 1/5 — ZooKeeper Ensemble
@@ -43,7 +47,7 @@ ok "Configs synced"
 log "STEP 1/5 — ZooKeeper"
 bash $SCRIPTS_DIR/01-zookeeper.sh
 
-for node in node01 node02 node03; do
+for node in dr-node01 dr-node02 dr-node03; do
   wait_for_port $node 2181 "ZooKeeper"
 done
 
@@ -53,7 +57,7 @@ done
 log "STEP 2/5 — JournalNodes"
 bash $SCRIPTS_DIR/02-journalnodes.sh
 
-for node in node01 node02 node03; do
+for node in dr-node01 dr-node02 dr-node03; do
   wait_for_port $node 8485 "JournalNode"
 done
 
@@ -63,8 +67,8 @@ done
 log "STEP 3/5 — NameNode HA"
 bash $SCRIPTS_DIR/03-namenodes-ha.sh
 
-wait_for_port node01 8020 "Active NameNode"
-wait_for_port node02 8020 "Standby NameNode"
+wait_for_port dr-node01 8020 "Active NameNode"
+wait_for_port dr-node02 8020 "Standby NameNode"
 
 # ══════════════════════════════════════════════════════════════════════════════
 #  STEP 4/5 — DataNodes
@@ -86,12 +90,12 @@ sleep 5
 #  CLUSTER HEALTH SUMMARY
 # ══════════════════════════════════════════════════════════════════════════════
 log "==== CLUSTER HEALTH ===="
-log "nn1: $($HADOOP_BIN haadmin -getServiceState nn1 2>/dev/null || echo unreachable)"
-log "nn2: $($HADOOP_BIN haadmin -getServiceState nn2 2>/dev/null || echo unreachable)"
+log "nn1: $($HADOOP_BIN haadmin -getServiceState dr-node01 2>/dev/null || echo unreachable)"
+log "nn2: $($HADOOP_BIN haadmin -getServiceState dr-node02 2>/dev/null || echo unreachable)"
 log "rm1: $($YARN_BIN rmadmin -getServiceState rm1 2>/dev/null || echo unreachable)"
 log "rm2: $($YARN_BIN rmadmin -getServiceState rm2 2>/dev/null || echo unreachable)"
 $HADOOP_BIN dfsadmin -report 2>/dev/null | grep "Live datanodes"
-for node in node01 node02 node03 node04 node05; do
+for node in dr-node01 dr-node02 dr-node03 dr-node04 dr-node05; do
   PROCS=$(ssh root@$node "jps 2>/dev/null | grep -v Jps | awk '{print \$2}' | tr '\n' ' '" 2>/dev/null)
   log "$node: $PROCS"
 done

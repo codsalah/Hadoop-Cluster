@@ -1,5 +1,5 @@
 #!/bin/bash
-# 04-datanodes.sh — Start DataNode daemons on node03, node04, node05
+# 04-datanodes.sh — Start DataNode daemons on dr-node03, dr-node04, dr-node05
 # Service-centric: this script handles ONLY the HDFS DataNode layer.
 
 set -e
@@ -7,7 +7,7 @@ set -e
 HADOOP_BIN="/opt/hadoop/bin/hdfs"
 DATANODE_DIR="/var/hadoop/datanode"
 
-DN_NODES="node03 node04 node05"
+DN_NODES="dr-node03 dr-node04 dr-node05"
 
 log()  { echo "[$(date '+%H:%M:%S')] [DataNode] $*"; }
 

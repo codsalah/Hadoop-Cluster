@@ -6,18 +6,18 @@ set -e
 
 YARN_BIN="/opt/hadoop/bin/yarn"
 
-RM_ACTIVE="node01"
-RM_STANDBY="node02"
-NM_NODES="node03 node04 node05"
+RM_ACTIVE="dr-node01"
+RM_STANDBY="dr-node02"
+NM_NODES="dr-node03 dr-node04 dr-node05"
 
 log()  { echo "[$(date '+%H:%M:%S')] [YARN] $*"; }
 
-# ── Start Active ResourceManager on node01 ───────────────────────────────────
+# ── Start Active ResourceManager on dr-node01 ───────────────────────────────────
 log "Starting Active ResourceManager on $RM_ACTIVE..."
 ssh root@$RM_ACTIVE "rm -f /tmp/hadoop-root-resourcemanager.pid && $YARN_BIN --daemon start resourcemanager"
 log "ResourceManager started on $RM_ACTIVE."
 
-# ── Start Standby ResourceManager on node02 ──────────────────────────────────
+# ── Start Standby ResourceManager on dr-node02 ──────────────────────────────────
 log "Starting Standby ResourceManager on $RM_STANDBY..."
 ssh root@$RM_STANDBY "rm -f /tmp/hadoop-root-resourcemanager.pid && $YARN_BIN --daemon start resourcemanager"
 log "ResourceManager started on $RM_STANDBY."

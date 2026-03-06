@@ -14,28 +14,28 @@
   <!-- RPC addresses — used by clients and DataNodes to talk to NameNodes -->
   <property>
     <name>dfs.namenode.rpc-address.clusterA.nn1</name>
-    <value>node01:8020</value>
+    <value>dr-node01:8020</value>
   </property>
   <property>
     <name>dfs.namenode.rpc-address.clusterA.nn2</name>
-    <value>node02:8020</value>
+    <value>dr-node02:8020</value>
   </property>
 
   <!-- HTTP addresses (Web UI) -->
   <property>
     <name>dfs.namenode.http-address.clusterA.nn1</name>
-    <value>node01:9870</value>
+    <value>dr-node01:9870</value>
   </property>
   <property>
     <name>dfs.namenode.http-address.clusterA.nn2</name>
-    <value>node02:9870</value>
+    <value>dr-node02:9870</value>
   </property>
 
   <!-- ===== JOURNALNODE CONFIG ===== -->
   <!-- Shared edit log — both NNs read/write here so standby is always up to date -->
   <property>
     <name>dfs.namenode.shared.edits.dir</name>
-    <value>qjournal://node01:8485;node02:8485;node03:8485/clusterA</value>
+    <value>qjournal://dr-node01:8485;dr-node02:8485;dr-node03:8485/clusterA</value>
   </property>
   <property>
     <name>dfs.journalnode.edits.dir</name>
@@ -71,4 +71,8 @@
     <name>dfs.replication</name>
     <value>1</value>
   </property>
+  <property>
+  <name>dfs.client.use.datanode.hostname</name>
+  <value>true</value>
+</property>
 </configuration>

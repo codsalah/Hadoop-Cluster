@@ -18,27 +18,27 @@
   <!-- ResourceManager hostnames -->
   <property>
     <name>yarn.resourcemanager.hostname.rm1</name>
-    <value>node01</value>
+    <value>dr-node01</value>
   </property>
   <property>
     <name>yarn.resourcemanager.hostname.rm2</name>
-    <value>node02</value>
+    <value>dr-node02</value>
   </property>
 
   <!-- Web UI addresses -->
   <property>
     <name>yarn.resourcemanager.webapp.address.rm1</name>
-    <value>node01:8088</value>
+    <value>dr-node01:8088</value>
   </property>
   <property>
     <name>yarn.resourcemanager.webapp.address.rm2</name>
-    <value>node02:8088</value>
+    <value>dr-node02:8088</value>
   </property>
 
   <!-- ZooKeeper for RM state store — failover resumes from exact same state -->
   <property>
     <name>yarn.resourcemanager.zk-address</name>
-    <value>node01:2181,node02:2181,node03:2181</value>
+    <value>dr-node01:2181,dr-node02:2181,dr-node03:2181</value>
   </property>
 
   <!-- NodeManager shuffle service (required for MapReduce) -->

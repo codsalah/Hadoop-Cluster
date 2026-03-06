@@ -8,9 +8,9 @@ NODE_NAME=$(hostname)
 mkdir -p "$ZK_DATA_DIR"
 
 case "$NODE_NAME" in
-    "node01") echo "1" > "$ZK_DATA_DIR/myid" ;;
-    "node02") echo "2" > "$ZK_DATA_DIR/myid" ;;
-    "node03") echo "3" > "$ZK_DATA_DIR/myid" ;;
+    "dr-node01") echo "1" > "$ZK_DATA_DIR/myid" ;;
+    "dr-node02") echo "2" > "$ZK_DATA_DIR/myid" ;;
+    "dr-node03") echo "3" > "$ZK_DATA_DIR/myid" ;;
     *) echo "Error: $NODE_NAME is not a ZooKeeper node"; exit 1 ;;
 esac
 

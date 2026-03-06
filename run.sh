@@ -1,6 +1,6 @@
 #!/bin/bash
 # /run.sh - Root initialization script for the cluster
-# Executed automatically by node01 when the container starts
+# Executed automatically by dr-node01 when the container starts
 
 echo "  [INIT] Starting Master Node Entrypoint"
 
@@ -8,7 +8,7 @@ echo "  [INIT] Starting Master Node Entrypoint"
 service ssh start
 
 echo "  Waiting for worker nodes to start SSH..."
-for node in node02 node03 node04 node05; do
+for node in dr-node02 dr-node03 dr-node04 dr-node05; do
     while ! nc -z $node 22 >/dev/null 2>&1; do
         sleep 2
     done
@@ -23,5 +23,5 @@ bash /shared/scripts/run-all.sh
 
 echo "  [IDLE] Cluster is running. Keeping container alive."
 
-# 3. Keep node01 container running indefinitely
+# 3. Keep dr-node01 container running indefinitely
 sleep infinity

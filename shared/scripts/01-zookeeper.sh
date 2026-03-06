@@ -1,5 +1,5 @@
 #!/bin/bash
-# 01-zookeeper.sh — Start ZooKeeper quorum on node01, node02, node03
+# 01-zookeeper.sh — Start ZooKeeper quorum on dr-node01, dr-node02, dr-node03
 # Service-centric: this script handles ONLY the ZooKeeper ensemble.
 
 set -e
@@ -9,16 +9,16 @@ ZK_BIN="/opt/zookeeper/bin/zkServer.sh"
 ZK_CONF_DIR="/opt/zookeeper/conf"
 SHARED_ZK_CFG="/shared/config/zookeeper/zoo.cfg"
 
-ZK_NODES="node01 node02 node03"
+ZK_NODES="dr-node01 dr-node02 dr-node03"
 
 log()  { echo "[$(date '+%H:%M:%S')] [ZooKeeper] $*"; }
 
 # ── Assign myid based on hostname ────────────────────────────────────────────
 get_myid() {
   case "$1" in
-    node01) echo 1 ;;
-    node02) echo 2 ;;
-    node03) echo 3 ;;
+    dr-node01) echo 1 ;;
+    dr-node02) echo 2 ;;
+    dr-node03) echo 3 ;;
   esac
 }
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 # sync-configs.sh — Distributes and sanitizes configs across the cluster
-# Run this from node01 whenever you change an XML or .sh config file on your Windows host.
+# Run this from dr-node01 whenever you change an XML or .sh config file on your Windows host.
 
 set -e
 
@@ -11,13 +11,13 @@ SHARED_ZK="/shared/config/zookeeper"
 
 
 
-# Ensure script is run from node01
-if [[ "$(hostname)" != "node01" ]]; then
-  echo "ERROR: Please run sync-configs.sh from node01."
+# Ensure script is run from dr-node01
+if [[ "$(hostname)" != "dr-node01" ]]; then
+  echo "ERROR: Please run sync-configs.sh from dr-node01."
   exit 1
 fi
 
-for node in node01 node02 node03 node04 node05; do
+for node in dr-node01 dr-node02 dr-node03 dr-node04 dr-node05; do
   echo "  → Syncing $node..."
   
   # 1. Copy Hadoop Configs
@@ -27,7 +27,7 @@ for node in node01 node02 node03 node04 node05; do
   ssh root@$node "dos2unix $HADOOP_CONF_DIR/*.xml $HADOOP_CONF_DIR/*.sh $HADOOP_CONF_DIR/workers 2>/dev/null || true"
 
   # 3. Copy ZooKeeper Configs (Only needed on ZK nodes)
-  if [[ "$node" == "node01" || "$node" == "node02" || "$node" == "node03" ]]; then
+  if [[ "$node" == "dr-node01" || "$node" == "dr-node02" || "$node" == "dr-node03" ]]; then
     ssh root@$node "cp $SHARED_ZK/zoo.cfg $ZK_CONF_DIR/ 2>/dev/null || true"
     ssh root@$node "dos2unix $ZK_CONF_DIR/zoo.cfg 2>/dev/null || true"
   fi
