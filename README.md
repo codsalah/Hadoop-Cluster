@@ -26,6 +26,8 @@
 
 This project provisions two complete, fully-functional **Hadoop High Availability (HA) clusters** using Docker containers — an **Active cluster** and a **Disaster Recovery (DR) cluster** — all running on a single host machine. It demonstrates how a production-grade distributed data platform can be simulated, automated, and validated in a local development environment.
 
+![alt text](Imgs/clusters-architecture.png)
+
 Each cluster runs Hadoop 3.4.2 with:
 - **HDFS HA** — dual NameNodes (Active + Standby) backed by a JournalNode quorum for shared edit log synchronization
 - **YARN HA** — dual ResourceManagers (Active + Standby) with ZooKeeper-based state persistence
@@ -58,8 +60,8 @@ The DR cluster is an independent, fully operational second Hadoop cluster. In a 
 ## 2. System Architecture
 
 ### Pseudo-Cluster Architecture
-### PLACEHOLDER
 
+![alt text](Imgs/cluster-arch.png)
 
 Each Docker container simulates a physical server in a real Hadoop cluster. All containers share a Docker bridge network (`cluster-network`), enabling inter-node communication by hostname (`node01`, `node02`, etc.), just like a real distributed deployment with DNS resolution.
 
@@ -300,7 +302,7 @@ Runs on every worker node. Manages container lifecycles on that node — launchi
 
 The entire startup sequence is orchestrated by `run-all.sh`, called from node01's `run.sh` entrypoint. The sequence is **strictly ordered** because each service depends on the previous layer being healthy.
 
-### PLACEHOLDER
+![boot-up](Imgs/boot-up.png)
 
 ### Idempotency
 
