@@ -1,7 +1,7 @@
 # Hadoop High Availability Cluster with Disaster Recovery
 
 > A fully containerized, production-grade Hadoop HA pseudo-cluster with an integrated Disaster Recovery cluster — built on Docker, HDFS, YARN, and ZooKeeper.
-
+![HadoopArchitecture](Imgs/Architecture.png)
 ---
 
 ## Table of Contents
@@ -67,7 +67,7 @@ Each Docker container simulates a physical server in a real Hadoop cluster. All 
 
 ### Node Roles at a Glance
 
-![alt text](Imgs/Node-Roles.png)
+![alt text](Imgs/Node-Roles-.png)
 
 > The DR cluster mirrors this exact architecture. Only the container names, hostnames, Docker Compose configuration, and port mappings differ between the two clusters.
 
