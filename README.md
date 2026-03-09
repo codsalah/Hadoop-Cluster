@@ -505,4 +505,28 @@ This project serves as a complete reference implementation for anyone building o
 
 ---
 
+## Official Documentation & References
+
+This architecture was engineered utilizing the official documentation for the specific software versions deployed. Below is the comprehensive index of resources used to build, configure, and troubleshoot this cluster.
+
+| Technology | Official Reference | Technology | Official Reference |
+| :--- | :--- | :--- | :--- |
+| **Hadoop 3.4.2** | [Main Docs Index](https://hadoop.apache.org/docs/r3.4.2/) | **ZooKeeper 3.8.6** | [Configuration](https://zookeeper.apache.org/doc/r3.8.6/zookeeperAdmin.html#sc_configuration) |
+| **Hadoop 3.4.2** | [Cluster Setup](https://hadoop.apache.org/docs/r3.4.2/hadoop-project-dist/hadoop-common/ClusterSetup.html) | **ZooKeeper 3.8.6** | [Four-Letter Commands](https://zookeeper.apache.org/doc/r3.8.6/zookeeperAdmin.html#sc_4lw) |
+| **Hadoop 3.4.2** | [HDFS HA with QJM](https://hadoop.apache.org/docs/r3.4.2/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html) | **ZooKeeper 3.8.6** | [Releases / Downloads](https://zookeeper.apache.org/releases.html) |
+| **Hadoop 3.4.2** | [YARN ResourceManager HA](https://hadoop.apache.org/docs/r3.4.2/hadoop-yarn/hadoop-yarn-site/ResourceManagerHA.html) | **Docker** | [Compose File Reference](https://docs.docker.com/reference/compose-file/) |
+| **Hadoop 3.4.2** | [HDFS Commands](https://hadoop.apache.org/docs/r3.4.2/hadoop-project-dist/hadoop-hdfs/HDFSCommands.html) | **Docker** | [depends_on](https://docs.docker.com/reference/compose-file/services/#depends_on) |
+| **Hadoop 3.4.2** | [YARN Commands](https://hadoop.apache.org/docs/r3.4.2/hadoop-yarn/hadoop-yarn-site/YarnCommands.html) | **Docker** | [WSL2 Backend](https://docs.docker.com/desktop/features/wsl/) |
+| **Hadoop 3.4.2** | [HDFS Admin Guide](https://hadoop.apache.org/docs/r3.4.2/hadoop-project-dist/hadoop-hdfs/HDFSAdminGuide.html) | **Git** | [gitattributes](https://git-scm.com/docs/gitattributes) |
+| **Hadoop 3.4.2** | [FileSystem Shell](https://hadoop.apache.org/docs/r3.4.2/hadoop-project-dist/hadoop-common/FileSystemShell.html) | **Git** | [core.autocrlf](https://git-scm.com/docs/git-config#Documentation/git-config.txt-coreautocrlf) |
+| **Hadoop 3.4.2** | [DistCP](https://hadoop.apache.org/docs/r3.4.2/hadoop-distcp/DistCp.html) | **Git** | [core.eol](https://git-scm.com/docs/git-config#Documentation/git-config.txt-coreeol) |
+| **Hadoop 3.4.2** | [core-default.xml](https://hadoop.apache.org/docs/r3.4.2/hadoop-project-dist/hadoop-common/core-default.xml) | **Java** | [OpenJDK 11](https://openjdk.org/projects/jdk/11/) |
+| **Hadoop 3.4.2** | [hdfs-default.xml](https://hadoop.apache.org/docs/r3.4.2/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml) | **Java** | [Hadoop Java Compatibility](https://cwiki.apache.org/confluence/display/HADOOP/Hadoop+Java+Versions) |
+| **Hadoop 3.4.2** | [yarn-default.xml](https://hadoop.apache.org/docs/r3.4.2/hadoop-yarn/hadoop-yarn-common/yarn-default.xml) | **Linux** | [rsync man page](https://man7.org/linux/man-pages/man1/rsync.1.html) |
+| **Hadoop 3.4.2** | [mapred-default.xml](https://hadoop.apache.org/docs/r3.4.2/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml) | **Linux** | [ssh-keygen man page](https://man7.org/linux/man-pages/man1/ssh-keygen.1.html) |
+| **Hadoop 3.4.2** | [Releases / Downloads](https://hadoop.apache.org/releases.html) | **Linux** | [ssh-copy-id man page](https://man7.org/linux/man-pages/man1/ssh-copy-id.1.html) |
+| **ZooKeeper 3.8.6** | [Admin Guide](https://zookeeper.apache.org/doc/r3.8.6/zookeeperAdmin.html) | **Linux** | [ssh_config man page](https://man7.org/linux/man-pages/man5/ssh_config.5.html) |
+| **ZooKeeper 3.8.6** | [Getting Started](https://zookeeper.apache.org/doc/r3.8.6/zookeeperStarted.html) | **Windows** | [Register-ScheduledTask](https://learn.microsoft.com/en-us/powershell/module/scheduledtasks/register-scheduledtask) |
+---
+
 Built with ❤️ by **[Salah](https://www.linkedin.com/in/salah-algamasy/)** and **[Waheed](https://www.linkedin.com/in/ahmedwaheedmobarez/)**
